@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rushali Gawande — GRC Analyst & Risk Consultant</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0B1F3A;
+    --navy-mid: #1B4F8A;
+    --navy-light: #2E6DB4;
+    --red: #C0392B;
+    --red-light: #E74C3C;
+    --cream: #F8F5F0;
+    --off-white: #FAFAF8;
+    --text: #1A1A2E;
+    --muted: #5A6272;
+    --border: #DDE3EE;
+    --accent-bg: #EEF3FA;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(11, 31, 58, 0.97);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw; height: 60px;
+  }
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 18px; color: #fff;
+    letter-spacing: 0.5px;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.65);
+    text-decoration: none; letter-spacing: 0.8px; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #fff; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    padding: 100px 5vw 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(27,79,138,0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(192,57,43,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { max-width: 700px; position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(192,57,43,0.15);
+    border: 1px solid rgba(192,57,43,0.35);
+    color: #E8967A;
+    font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 100px; margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 900; line-height: 1.0;
+    color: #fff; margin-bottom: 8px;
+  }
+  .hero h1 span { color: var(--red-light); }
+  .hero-subtitle {
+    font-size: 17px; color: rgba(255,255,255,0.55);
+    font-weight: 300; letter-spacing: 0.3px;
+    margin-bottom: 36px; max-width: 560px;
+  }
+  .hero-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 44px; }
+  .pill {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.5px;
+    padding: 7px 16px; border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.8);
+  }
+  .pill.accent { background: var(--navy-mid); border-color: var(--navy-mid); }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--red); color: #fff;
+    padding: 13px 28px; border-radius: 6px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    border: 2px solid var(--red); transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .btn-primary:hover { background: #A93226; border-color: #A93226; }
+  .btn-outline {
+    background: transparent; color: rgba(255,255,255,0.85);
+    padding: 13px 28px; border-radius: 6px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.25); transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+  .hero-stats {
+    position: absolute; right: 5vw; bottom: 60px;
+    display: flex; gap: 40px;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px; font-weight: 700; color: #fff; line-height: 1;
+  }
+  .stat-num span { color: var(--red-light); }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 4px; }
+
+  /* SECTIONS */
+  section { padding: 90px 5vw; }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--red); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4vw, 46px); font-weight: 700;
+    color: var(--navy); line-height: 1.2; margin-bottom: 48px;
+  }
+  .section-title em { color: var(--navy-mid); font-style: normal; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .about-text p { font-size: 16px; color: var(--muted); margin-bottom: 20px; line-height: 1.85; }
+  .about-text strong { color: var(--text); }
+  .about-highlight {
+    background: var(--navy);
+    border-radius: 12px; padding: 32px;
+    border-left: 4px solid var(--red);
+  }
+  .about-highlight blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; line-height: 1.6;
+    color: rgba(255,255,255,0.85); font-style: italic;
+    margin-bottom: 20px;
+  }
+  .about-highlight cite {
+    font-size: 12px; color: rgba(255,255,255,0.4);
+    letter-spacing: 1px; text-transform: uppercase; font-style: normal;
+  }
+  .cert-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+  .cert-badge {
+    font-size: 12px; font-weight: 500;
+    padding: 7px 14px; border-radius: 6px;
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    color: var(--navy-mid);
+  }
+
+  /* EXPERIENCE */
+  .exp-section { background: var(--cream); }
+  .exp-grid { display: grid; gap: 2px; }
+  .exp-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 36px 40px;
+    position: relative; overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+    margin-bottom: 16px;
+  }
+  .exp-card:hover { box-shadow: 0 8px 40px rgba(11,31,58,0.1); transform: translateY(-2px); }
+  .exp-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px; background: var(--red);
+    border-radius: 12px 0 0 12px;
+  }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .exp-role { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--navy); }
+  .exp-date {
+    font-size: 12px; font-weight: 500; color: var(--muted);
+    background: var(--accent-bg); padding: 5px 12px; border-radius: 100px;
+    white-space: nowrap;
+  }
+  .exp-company { font-size: 14px; font-weight: 500; color: var(--red); margin-bottom: 20px; letter-spacing: 0.3px; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .exp-bullets li { font-size: 15px; color: var(--muted); padding-left: 20px; position: relative; line-height: 1.7; }
+  .exp-bullets li::before { content: '▪'; position: absolute; left: 0; color: var(--navy-mid); font-size: 11px; top: 5px; }
+  .exp-bullets strong { color: var(--text); }
+  .exp-metrics { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+  .metric-chip {
+    font-size: 13px; font-weight: 500;
+    background: var(--navy); color: #fff;
+    padding: 5px 14px; border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+  .project-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px;
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .project-card:hover { box-shadow: 0 12px 40px rgba(11,31,58,0.1); transform: translateY(-4px); }
+  .project-tag {
+    font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--navy-mid); background: var(--accent-bg);
+    padding: 4px 12px; border-radius: 100px; display: inline-block; margin-bottom: 16px;
+  }
+  .project-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.3; }
+  .project-desc { font-size: 14px; color: var(--muted); line-height: 1.75; margin-bottom: 20px; }
+  .project-link {
+    font-size: 13px; font-weight: 500; color: var(--red);
+    text-decoration: none; letter-spacing: 0.3px;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .project-link:hover { color: #A93226; }
+  .project-link::after { content: '→'; }
+  .project-number {
+    position: absolute; right: 24px; top: 24px;
+    font-family: 'Playfair Display', serif;
+    font-size: 64px; font-weight: 900;
+    color: rgba(11,31,58,0.04); line-height: 1;
+  }
+
+  /* SKILLS */
+  .skills-section { background: var(--navy); }
+  .skills-section .section-eyebrow { color: #E8967A; }
+  .skills-section .section-title { color: #fff; }
+  .skills-section .section-title em { color: rgba(255,255,255,0.4); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .skill-block {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 28px;
+  }
+  .skill-block h3 {
+    font-size: 13px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #E8967A; margin-bottom: 16px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    font-size: 12px; padding: 5px 12px; border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .edu-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 16px; padding: 36px;
+    position: relative; overflow: hidden;
+  }
+  .edu-card::after {
+    content: ''; position: absolute;
+    bottom: 0; right: 0;
+    width: 120px; height: 120px;
+    background: var(--accent-bg);
+    border-radius: 120px 0 0 0;
+  }
+  .edu-degree { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 6px; line-height: 1.3; }
+  .edu-focus { font-size: 13px; color: var(--muted); font-style: italic; margin-bottom: 20px; }
+  .edu-school { font-size: 15px; font-weight: 500; color: var(--navy-mid); margin-bottom: 4px; }
+  .edu-year { font-size: 12px; color: var(--muted); letter-spacing: 0.5px; }
+  .edu-badge {
+    display: inline-block;
+    background: var(--navy); color: #fff;
+    font-size: 11px; letter-spacing: 0.8px; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 100px; margin-top: 16px; position: relative; z-index: 1;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--navy);
+    text-align: center; padding: 100px 5vw;
+  }
+  .contact-section .section-eyebrow { color: #E8967A; text-align: center; }
+  .contact-section .section-title { color: #fff; text-align: center; }
+  .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-top: 48px; }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    padding: 14px 28px; border-radius: 8px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .contact-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+  .contact-btn.primary { background: var(--red); border-color: var(--red); color: #fff; }
+  .contact-btn.primary:hover { background: #A93226; }
+  .contact-icon { font-size: 16px; }
+
+  /* FOOTER */
+  footer {
+    background: #07131F;
+    text-align: center; padding: 28px;
+    font-size: 12px; color: rgba(255,255,255,0.3);
+    letter-spacing: 0.5px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-content > * { animation: fadeUp 0.7s ease both; }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+
+  @media (max-width: 768px) {
+    .about-grid, .edu-grid { grid-template-columns: 1fr; }
+    .hero-stats { position: static; margin-top: 48px; }
+    .hero { flex-direction: column; }
+    nav { padding: 0 4vw; }
+    .nav-links { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">Rushali Gawande</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">✦ Open to Opportunities — Mumbai &amp; Relocate</div>
+    <h1>Rushali<br><span>Gawande</span></h1>
+    <p class="hero-subtitle">GRC Analyst · Risk &amp; Compliance Consultant · Strategic Advisor<br>MSc Information Security · ISO 27001 Lead Auditor</p>
+    <div class="hero-pills">
+      <span class="pill accent">ISO 27001 Certified</span>
+      <span class="pill">NIST · GDPR · PCI-DSS</span>
+      <span class="pill">Customer Advisory</span>
+      <span class="pill">Royal Holloway (Top-10 Global)</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get In Touch</a>
+      <a href="#experience" class="btn-outline">View Experience</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">95<span>%</span></div>
+      <div class="stat-label">SLA Resolution Rate</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">30<span>%</span></div>
+      <div class="stat-label">Onboarding Time Saved</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10<span>+</span></div>
+      <div class="stat-label">Audit Frameworks Built</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow">About Me</div>
+  <div class="section-title">Bridging <em>technical rigour</em><br>with business impact</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm an <strong>ISO 27001 Lead Auditor-certified MSc graduate</strong> from Royal Holloway, University of London — ranked Top 10 globally for Information Security. I specialise in translating complex compliance and risk requirements into boardroom-ready strategies that actually get implemented.</p>
+      <p>With experience across GRC frameworks (ISO 27001, NIST, GDPR, PCI-DSS), customer advisory, and enterprise risk management, I've delivered measurable outcomes: <strong>30% faster onboarding</strong>, <strong>95% SLA resolution rates</strong>, and <strong>zero escalations</strong> across multi-time-zone engagements.</p>
+      <p>Currently based in Mumbai, open to relocate. Fluent in English, learning Italian. I thrive at the intersection of structured analytical thinking and empathetic stakeholder communication.</p>
+      <div class="cert-row">
+        <span class="cert-badge">ISO/IEC 27001:2022 Lead Auditor</span>
+        <span class="cert-badge">Risk Management Professional</span>
+        <span class="cert-badge">AWS Fundamentals</span>
+        <span class="cert-badge">TCS iON Young Professional</span>
+        <span class="cert-badge">Agile &amp; ITSM</span>
+      </div>
+    </div>
+    <div>
+      <div class="about-highlight">
+        <blockquote>"I don't just document compliance — I architect the frameworks, quantify the ROI, and present the strategy to the people who make the decisions."</blockquote>
+        <cite>— Rushali Gawande, GRC Analyst</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="exp-section">
+  <div class="section-eyebrow">Professional Experience</div>
+  <div class="section-title">Where I've <em>delivered</em></div>
+
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-role">Business Risk Analyst</div>
+        <div class="exp-date">Sep – Nov 2024</div>
+      </div>
+      <div class="exp-company">Finlatics — Business Analytics Program · Mumbai, India (Remote)</div>
+      <ul class="exp-bullets">
+        <li>Developed <strong>10+ ISO 27001 / NIST audit checklists and compliance frameworks</strong>, cutting client onboarding time by 30% through standardised documentation workflows.</li>
+        <li>Tracked <strong>100+ remediation actions</strong> across 5+ global teams in 3 time zones — achieving a 95% on-time closure rate via systematic KPI dashboards.</li>
+        <li>Centralised reporting pipeline reduced cycle time by <strong>25%</strong>, demonstrating end-to-end process design and automation thinking.</li>
+        <li>Identified 10+ process improvement opportunities through workflow analysis, delivering measurable cost savings for consulting engagements.</li>
+        <li>Synthesised stakeholder feedback into <strong>executive-level briefs</strong> consumed directly by C-suite decision-makers.</li>
+      </ul>
+      <div class="exp-metrics">
+        <span class="metric-chip">−30% onboarding time</span>
+        <span class="metric-chip">95% SLA rate</span>
+        <span class="metric-chip">100+ actions tracked</span>
+        <span class="metric-chip">−25% reporting cycle</span>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div class="exp-role">Customer Experience Associate</div>
+        <div class="exp-date">Oct 2023 – Jan 2024</div>
+      </div>
+      <div class="exp-company">Lapland UK · London, United Kingdom</div>
+      <ul class="exp-bullets">
+        <li>Resolved <strong>95% of customer escalations within a 24-hour SLA</strong> for a premium, high-demand seasonal brand with diverse international clientele.</li>
+        <li>Coordinated <strong>8+ cross-functional stakeholders</strong> (logistics, operations, guest relations) to streamline service delivery — improving team efficiency by 40%.</li>
+        <li>Generated live 'moments of truth' journey insights shared with management, demonstrating natural VOC analysis and advisory instincts.</li>
+        <li>Built expertise in <strong>cross-cultural communication</strong> and high-pressure stakeholder management directly applicable to client-facing consulting.</li>
+      </ul>
+      <div class="exp-metrics">
+        <span class="metric-chip">95% SLA resolution</span>
+        <span class="metric-chip">+40% team efficiency</span>
+        <span class="metric-chip">8+ stakeholders coordinated</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">Strategic Projects</div>
+  <div class="section-title">Research &amp; <em>simulations</em></div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-number">01</div>
+      <div class="project-tag">MSc Dissertation</div>
+      <div class="project-title">Enterprise Network Security Redesign with ROI Analysis</div>
+      <div class="project-desc">Designed a zone-based enterprise security architecture with full financial modelling — quantifying ROI on IPS/IDS and firewall investments. Delivered a 15,000-word strategic report bridging technical controls and business outcomes to a senior academic panel.</div>
+      <a href="https://github.com/Rushali65/MSC" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-number">02</div>
+      <div class="project-tag">Consulting Simulations × 7</div>
+      <div class="project-title">Industry Advisory Programs — Forage</div>
+      <div class="project-desc">TCS Cybersecurity Strategy · Mastercard Business Process Redesign · DLA Piper GDPR Advisory · AWS Solutions Architecture. Executive-level deliverables across cybersecurity, compliance, and digital transformation for global enterprise scenarios.</div>
+      <a href="https://github.com/Rushali65" target="_blank" class="project-link">View Portfolio</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-number">03</div>
+      <div class="project-tag">Product · Security</div>
+      <div class="project-title">Redirect Shield — Chrome Security Extension</div>
+      <div class="project-desc">Built a product-managed phishing protection Chrome extension with real-time threat detection, applying UX principles to a security-critical application. Demonstrates product management and engineering capability alongside GRC expertise.</div>
+      <a href="https://github.com/Rushali65" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-number">04</div>
+      <div class="project-tag">Change Management</div>
+      <div class="project-title">Organisational Change Management Study</div>
+      <div class="project-desc">Mapped stakeholder resistance patterns across an enterprise digital transformation programme. Developed phased communication frameworks, adoption KPI tracking methodology, and Agile rollout playbooks used by programme leaders.</div>
+      <a href="https://github.com/Rushali65/Lapland-activite" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-section">
+  <div class="section-eyebrow">Skills &amp; Competencies</div>
+  <div class="section-title">Built for <em>complex problems</em></div>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h3>GRC &amp; Audit</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">ISO 27001</span>
+        <span class="skill-tag">NIST CSF</span>
+        <span class="skill-tag">COBIT</span>
+        <span class="skill-tag">GDPR</span>
+        <span class="skill-tag">HIPAA</span>
+        <span class="skill-tag">PCI-DSS</span>
+        <span class="skill-tag">Internal Audit</span>
+        <span class="skill-tag">Risk Assessment</span>
+        <span class="skill-tag">Policy Development</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h3>Analytics &amp; Data</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Excel (Advanced)</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">KPI Dashboards</span>
+        <span class="skill-tag">Segmentation</span>
+        <span class="skill-tag">VOC Analysis</span>
+        <span class="skill-tag">Market Sizing</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h3>Consulting</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Customer Journey Mapping</span>
+        <span class="skill-tag">Business Case Development</span>
+        <span class="skill-tag">SWOT</span>
+        <span class="skill-tag">Cost-Benefit Analysis</span>
+        <span class="skill-tag">Change Management</span>
+        <span class="skill-tag">Stakeholder Mgmt</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h3>Digital &amp; CX</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Social Media Strategy</span>
+        <span class="skill-tag">CRM Tools</span>
+        <span class="skill-tag">Digital Marketing</span>
+        <span class="skill-tag">Community Management</span>
+        <span class="skill-tag">Brand Voice</span>
+        <span class="skill-tag">E-commerce</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h3>Soft Skills</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Executive Reporting</span>
+        <span class="skill-tag">Cross-cultural Comms</span>
+        <span class="skill-tag">Agile</span>
+        <span class="skill-tag">Program Management</span>
+        <span class="skill-tag">Cross-functional Leadership</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h3>Languages</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">English — Fluent</span>
+        <span class="skill-tag">Hindi — Native</span>
+        <span class="skill-tag">Italian — Learning</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-eyebrow">Education</div>
+  <div class="section-title">Academic <em>foundation</em></div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-degree">MSc Information Security</div>
+      <div class="edu-focus">Risk Management &amp; Business Continuity Focus</div>
+      <div class="edu-school">Royal Holloway, University of London</div>
+      <div class="edu-year">2022 – 2024 · London, UK</div>
+      <div class="edu-badge">🏆 Top-10 Globally Ranked</div>
+      <p style="font-size:13px; color: var(--muted); margin-top: 20px; line-height: 1.7;">Risk &amp; Threat Analysis · Digital Forensics · Business Continuity · Stakeholder Communications · Data Governance · Security Management</p>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">BSc Information Technology</div>
+      <div class="edu-focus">Business Systems &amp; Analytics Focus</div>
+      <div class="edu-school">Sophia Women's University, Mumbai</div>
+      <div class="edu-year">2019 – 2022 · Mumbai, India</div>
+      <div class="edu-badge">Mumbai, India</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-eyebrow">Let's Connect</div>
+  <div class="section-title">Ready to drive<br><em>your</em> next initiative</div>
+  <p style="font-size:17px; color: rgba(255,255,255,0.5); max-width: 520px; margin: 0 auto; line-height:1.8;">Available immediately. Open to GRC, risk consulting, customer advisory, and compliance roles. Mumbai-based; open to relocate globally.</p>
+  <div class="contact-links">
+    <a href="mailto:gawanderushali102@gmail.com" class="contact-btn primary">
+      <span class="contact-icon">✉</span> gawanderushali102@gmail.com
+    </a>
+    <a href="https://linkedin.com/in/rushali-gawande" target="_blank" class="contact-btn">
+      <span class="contact-icon">🔗</span> linkedin.com/in/rushali-gawande
+    </a>
+    <a href="https://github.com/Rushali65" target="_blank" class="contact-btn">
+      <span class="contact-icon">💻</span> github.com/Rushali65
+    </a>
+    <a href="tel:+919930553046" class="contact-btn">
+      <span class="contact-icon">📞</span> +91 99305 53046
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Rushali Gawande · GRC Analyst · Risk &amp; Compliance Consultant · Mumbai, India
+</footer>
+
+</body>
+</html>
